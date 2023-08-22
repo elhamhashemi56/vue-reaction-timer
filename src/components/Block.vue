@@ -1,10 +1,35 @@
 <template>
-  <div class="block">Click Me</div>
+  <div class="block" v-if="showBox" >Click Me</div>
 </template>
 
 <script>
 export default {
-  props:["delayProps"]
+  props:["delayProps"],
+  data(){
+    return{
+      showBox:false
+    }
+    
+  },
+  
+  mounted(){
+    console.log("component mounted");
+    setTimeout(()=>{
+      this.showBox=true
+    },this.delayProps)
+  },
+
+  updated(){
+    console.log("component updated");
+  },
+
+  unmounted(){
+    console.log("component unmounted");
+  },
+  
+  methods:{
+    
+  }
 
 }
 </script>
