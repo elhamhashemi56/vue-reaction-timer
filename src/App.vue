@@ -1,16 +1,19 @@
 <template>
   <h1>OpenCode Reaction Timer</h1>
   <button @click="start" :disabled="isPlaying">Play</button>
-  <p v-if="showTime">Reaction Time : {{ score }} ms </p>
+  <!-- <p v-if="showTime">Reaction Time : {{ score }} ms </p> -->
+  <Results v-if="showTime" :scoreProps="score"/>
   <Block v-if="isPlaying" :delayProps="delay" @end="endGame"/>
 </template>
 
 
 <script>
 import Block from "./components/Block.vue"
+import Results from "./components/Results.vue"
+
 export default {
   name: 'App',
-  components: {Block},
+  components: {Block,Results},
   data(){
     return{
       delay:null,
