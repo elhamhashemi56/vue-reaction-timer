@@ -1,5 +1,8 @@
 <template>
-  <div class="block" v-if="showBox" >Click Me</div>
+  <div class="block_Container">
+    <div class="block" v-if="showBox" @click="stopTimer" >Click Me</div>
+  </div>
+ 
 </template>
 
 <script>
@@ -7,7 +10,9 @@ export default {
   props:["delayProps"],
   data(){
     return{
-      showBox:false
+      showBox:false,
+      reactionTimer:0,
+      timer:null
     }
     
   },
@@ -16,6 +21,7 @@ export default {
     console.log("component mounted");
     setTimeout(()=>{
       this.showBox=true
+      this.startTimer()
     },this.delayProps)
   },
 
@@ -28,7 +34,16 @@ export default {
   },
   
   methods:{
-    
+    startTimer(){
+      this.timer = setInterval(() => {
+        this.reactionTimer += 10
+      }, 10);
+     
+    },
+    stopTimer(){
+      clearInterval(this.timer)
+      console.log(this.reactionTimer);
+    }
   }
 
 }
@@ -37,11 +52,20 @@ export default {
 <style>
 .block {
     border: 1px solid rgb(111 151 237);
-    padding: 7rem;
-    margin: 5rem 30rem;
-    background-color: rgb(111 151 237);
+    margin-top: 1rem;
+    width: 15rem;
+    height: 12rem;
+    background-color: rgb(77 120 151);
     border-radius: 10px;
     text-align: center;
     color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.block_Container{
+  display: flex;
+  justify-content: center;
+  
 }
 </style>
