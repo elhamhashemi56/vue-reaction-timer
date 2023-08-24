@@ -42,6 +42,7 @@ export default {
     },
     stopTimer(){
       clearInterval(this.timer)
+      this.$emit("end",this.reactionTimer)
       console.log(this.reactionTimer);
     }
   }
